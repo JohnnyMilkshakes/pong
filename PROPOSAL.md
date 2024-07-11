@@ -6,23 +6,24 @@ The game of Pong is a classic arcade video game that simulates table tennis. Her
 
 #### Paddles:
 
-There are two paddles, one on the left side and one on the right side of the screen.
+* There are two paddles, one on the left side and one on the right side of the screen.
 Each paddle is controlled by a player. In a single-player mode, one paddle is controlled by the player and the other by the computer.
 Paddles move up and down to intercept the ball.
 
 #### Ball:
 
-The ball is a small square that moves across the screen.
+* The ball is a small square that moves across the screen.
 It bounces off the top and bottom edges of the screen.
 The ball changes direction when it hits a paddle.
 
 #### Playing Field:
 
-The field is a rectangular area bounded by the screen edges.
+* The field is a rectangular area bounded by the screen edges.
 There is a vertical center line dividing the field into two halves.
-Score:
 
-Points are scored when the opponent fails to return the ball.
+#### Score:
+
+* Points are scored when the opponent fails to return the ball.
 The game keeps track of each player's score.
 Game Mechanics
 Starting the Game:
@@ -32,37 +33,37 @@ The ball moves in a random direction at the start.
 
 #### Movement:
 
-The player moves their paddle up or down using keyboard keys (e.g., W/S or Arrow keys) or a joystick.
+* The player moves their paddle up or down using keyboard keys (e.g., W/S or Arrow keys) or a joystick.
 The computer-controlled paddle moves automatically, often programmed to follow the ball with varying difficulty.
 
 #### Ball Dynamics:
 
-The ball moves at a constant speed but changes direction upon collision.
+* The ball moves at a constant speed but changes direction upon collision.
 When the ball hits a paddle, it reflects and continues moving in the opposite direction.
 If the ball hits the top or bottom of the screen, it bounces back.
 
 #### Scoring:
 
-If the ball passes a paddle and touches the edge of the screen behind it, the opponent scores a point.
+* If the ball passes a paddle and touches the edge of the screen behind it, the opponent scores a point.
 After a point is scored, the ball is reset to the center and the game resumes.
 Winning the Game:
 
-The game continues until a player reaches a predetermined score.
+* The game continues until a player reaches a predetermined score.
 The first player to reach the score limit wins the game.
 
 ### Additional Features
 
 #### Speed Variation:
 
-The ball speed can increase over time or after each hit to make the game more challenging.
+* The ball speed can increase over time or after each hit to make the game more challenging.
 
 #### Angle Variation:
 
-The angle at which the ball bounces off the paddle can vary depending on where it hits the paddle. For example, hitting the paddle closer to the edge might reflect the ball at a sharper angle.
+* The angle at which the ball bounces off the paddle can vary depending on where it hits the paddle. For example, hitting the paddle closer to the edge might reflect the ball at a sharper angle.
 
 #### Player Interface:
 
-A simple interface shows the score, player names.
+* A simple interface shows the score, player names.
 Pong is a straightforward yet engaging game that emphasizes quick reflexes and simple mechanics. Its simplicity has made it a timeless classic in the history of video games.
 
 
