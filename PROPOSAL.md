@@ -1,17 +1,10 @@
 # My game proposal 
-Your choice of game.
-
-Pseudocode for the overall gameplay. This pseudocode does not need to go into exhaustive detail but should demonstrate that you understand some of the unique challenges you will encounter while building your game.
-
-Any additional project planning requirements specific to the game you have chosen as defined in the in the Additional Planning Requirements column of the table in the Recommended games document or as discussed with your instructor.
-
 Choice of game: Pong
 
 Pseudocode:
 
 create html and css scaffolding
-    html should start with a greeting message and a button to start the game
-    when the user presses start use JS to change css classes to hide the starting html and show the game html.
+    html should start with three sections, one to display game start screen, second to display game board, third to display end screen. When the user presses start use JS to change css classes to hide the starting html and show the game html, when the game ends hide the game board and show the end screen.
 
 Javascript:
     define the necessary variables
@@ -36,6 +29,19 @@ Javascript:
 
     init()
         create objects from classes (new ball, new userPaddle, new computerPaddle)
+        initialize state variables maybe state should be a class too
+
+        start a loop that moves the ball
+            ball position moves right and up to begin
+            if ball y position touches the upper or lower limits of the gamespace flip directions
+            if ball x position touches the right or left paddle flip directions
+            if ball x touches user paddle speed up
+            if either paddle position moved repaint paddle with new position
+            if ball touches right or left limit of gamespace add point to correct player and reset ball position and speed
+            if either players points equal the score limit end the game by hiding the game html and showing a win or lose message and a play again button
+
+
+
         
 
 
