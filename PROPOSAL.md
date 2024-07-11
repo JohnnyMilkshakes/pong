@@ -26,9 +26,10 @@ There is a vertical center line dividing the field into two halves.
 * Points are scored when the opponent fails to return the ball.
 The game keeps track of each player's score.
 Game Mechanics
-Starting the Game:
 
-The game begins with the ball placed in the center of the screen.
+#### Starting the Game:
+
+* The game begins with the ball placed in the center of the screen.
 The ball moves in a random direction at the start.
 
 #### Movement:
@@ -46,7 +47,8 @@ If the ball hits the top or bottom of the screen, it bounces back.
 
 * If the ball passes a paddle and touches the edge of the screen behind it, the opponent scores a point.
 After a point is scored, the ball is reset to the center and the game resumes.
-Winning the Game:
+
+#### Winning the Game:
 
 * The game continues until a player reaches a predetermined score.
 The first player to reach the score limit wins the game.
