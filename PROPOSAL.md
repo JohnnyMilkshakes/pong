@@ -25,7 +25,8 @@ There is a vertical center line dividing the field into two halves.
 
 * Points are scored when the opponent fails to return the ball.
 The game keeps track of each player's score.
-Game Mechanics
+
+### Game Mechanics
 
 #### Starting the Game:
 
