@@ -7,6 +7,8 @@ The game of Pong is a classic arcade video game that simulates table tennis. Her
 
 ![Pong Start Screen](./assets/pong-start-screenshot.png)
 
+![Pong Gameplay](./assets/gameplay-screen.png)
+
 ![Pong End Screen](./assets/end-game-pic.png)
 
 
