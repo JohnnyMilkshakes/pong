@@ -2,16 +2,6 @@
 ## Pong:
 The game of Pong is a classic arcade video game that simulates table tennis. Here’s a detailed description of how it works:
 
-
-
-
-![Pong Start Screen](./assets/pong-start-screenshot.png)
-
-![Pong Gameplay](./assets/gameplay-screen.png)
-
-![Pong End Screen](./assets/end-game-pic.png)
-
-
 ### Basic Elements 
 
 #### Paddles:
@@ -79,16 +69,17 @@ The first player to reach the score limit wins the game.
 * A simple interface shows the score, player names.
 Pong is a straightforward yet engaging game that emphasizes quick reflexes and simple mechanics. Its simplicity has made it a timeless classic in the history of video games.
 
-
-
-
 ## Technologies Used
 
 Vanilla HTML, CSS, Javascript
 
 Avoid using canvas if possible
 
+![Pong Start Screen](./assets/pong-start-screenshot.png)
 
+![Pong Gameplay](./assets/gameplay-screen.png)
+
+![Pong End Screen](./assets/end-game-pic.png)
 
 ## MVP User Stories
 
@@ -116,7 +107,6 @@ Avoid using canvas if possible
 * As a user, I want to pause and resume the game so that I can take breaks when needed.
 
 * As a user, I want to view my highest score so that I can track my progress over time.
-
 
 ## Pseudocode:
 ```
@@ -157,3 +147,15 @@ Javascript
             if ball touches right or left limit of gamespace add point to correct player and reset ball position and speed
             if either players points equal the score limit end the game by hiding the game html and showing a win or lose message and a play again button
 ```
+
+
+| Day       |   | Task                                                      | Blockers | Notes/Thoughts |   |   |   |
+|-----------|---|-----------------------------------------------------------|----------|----------------|---|---|---|
+| Friday    |   | Complete Proposal                                         |          |                |   |   |   |
+| Saturday  |   | Create initial HTML and CSS scaffolding                   |          |                |   |   |   |
+| Sunday    |   | Create Javascript classes and begin adding functionality  |          |                |   |   |   |
+| Monday    |   | Finalize scaffolding, complete as much of MVP as possible |          |                |   |   |   |
+| Tuesday   |   | Ensure MVP complete check for bugs and edge cases         |          |                |   |   |   |
+| Wednesday |   | Work on stretch goals                                     |          |                |   |   |   |
+| Thursday  |   | Clean up code, make styling nicer, deploy                 |          |                |   |   |   |
+| Friday    |   | Present!                                                  |          |                |   |   |   |
