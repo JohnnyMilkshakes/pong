@@ -154,7 +154,7 @@ Javascript
 | Friday    |   | Complete Proposal                                         |          |                |
 | Saturday  |   | Create initial HTML and CSS scaffolding                   |          |                |
 | Sunday    |   | Create Javascript classes and begin adding functionality  |          |                |
-| Monday    |   | Finalize scaffolding, complete as much of MVP as possible |          |                |
+| Monday    |   | Finalize scaffolding, start MVP |          |                |
 | Tuesday   |   | Work on MVP                                               |          |                |
 | Wednesday |   | Complete MVP, check for bugs and edge cases               |          |                |
 | Thursday  |   | Work on stretch goals                                     |          |                |
