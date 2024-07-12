@@ -83,7 +83,7 @@ Avoid using canvas if possible
 ## MVP User Stories
 
 
-* As a user, I want to start a new game of Pong so that I can play immediately.
+* As a user, I want to start a new game of Pong with a delay timer so I am ready when it starts.
 
 * As a user, I want to control the paddle with my keyboard so that I can move it up and down to hit the ball.
 
