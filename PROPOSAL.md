@@ -82,6 +82,7 @@ Avoid using canvas if possible
 
 ## MVP User Stories
 
+* As a user, I want to see the game instructions so that I understand how to play and what the rules are.
 
 * As a user, I want to start a new game of Pong with a delay timer so I am ready when it starts.
 
@@ -103,8 +104,6 @@ Avoid using canvas if possible
 * As a user, I want to adjust the difficulty level of the computer opponent so that the game can match my skill level.
 
 * As a user, I want to pause and resume the game so that I can take breaks when needed.
-
-* As a user, I want to see the game instructions so that I understand how to play and what the rules are.
 
 * As a user, I want to view my highest score so that I can track my progress over time.
 
