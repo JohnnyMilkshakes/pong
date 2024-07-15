@@ -5,25 +5,12 @@
 // Game-specific required features are defined in the Required Features column in the table in the Recommended Games document, or as discussed with your instructor. If you want to build a game that is not on this list, you will need to present and discuss your game’s features with the instructional team for approval.
 // The game is deployed online so that the rest of the world can play it.
 
-
-// define the necessary variables
-// create classes that represent necessary data and methods for the paddles and ball
-// will need to get the position and size of each item (or position of upper and lower bounds)
-// write methods to set and get necessary data
-
-// get the necessary html elements that will be interacted with or updated 
-// gamespace = html container for entire game
-// userPaddle = html element for the user paddle
-// computerPaddle = html element for the computer paddle
-// ball = html element for ball
-
-
 class GameElement {
     constructor(htmlElement) {
         this.htmlElement = htmlElement
 
         const data = this.getElementData()
-
+        console.log(data)
         this.topLeft = {
             x: data.left,
             y: data.top
@@ -49,15 +36,14 @@ class GameElement {
     }
 
     moveUp() {
-        this.topLeft.y = this.topLeft.y + this.speed
-        this.bottomRight.y = this.bottomRight.y + this.speed
+        this.topLeft.y = this.topLeft.y - this.speed
+        this.bottomRight.y = this.bottomRight.y - this.speed
         this.updatePosition()
-
     }
 
     moveDown() {
-        this.topLeft.y = this.topLeft.y - this.speed
-        this.bottomRight.y = this.bottomRight.y - this.speed
+        this.topLeft.y = this.topLeft.y + this.speed
+        this.bottomRight.y = this.bottomRight.y + this.speed
         this.updatePosition()
     }
 
@@ -65,7 +51,6 @@ class GameElement {
         this.topLeft.x = this.topLeft.x - this.speed
         this.bottomRight.x = this.bottomRight.x - this.speed
         this.updatePosition()
-
     }
 
     moveRight() {
@@ -77,15 +62,13 @@ class GameElement {
     updatePosition() {
         this.htmlElement.style.transform = 
         `translate(${this.topLeft.x - this.startPointTopLeft.x}px, 
-                   ${this.startPointTopLeft.y - this.topLeft.y}px)`
-}
+                   ${this.topLeft.y - this.startPointTopLeft.y}px)`
+    }
 
     getElementData() {
         return this.htmlElement.getBoundingClientRect()
     }
 }
-
-
 
 class Ball extends GameElement{
     constructor(htmlElement, speed, direction) {
@@ -111,41 +94,67 @@ class Paddle extends GameElement {
 }
 
 class State {
-    constructor(playerOne, playerTwo, ball) {
+    constructor(playerOne, playerTwo, ball, gameScreen) {
         this.playerOne = playerOne
         this.playerTwo = playerTwo
         this.ball = ball
+        this.gameScreen = gameScreen
+
+        this.gameplayArea = {
+            leftBound: '',
+            rightBound: '',
+            upperBound: '',
+            lowerBound: ''
+        }
 
         this.score = {
             playerOne: 0,
             playerTwo: 0
         }
     
-        this.keysBeingPressed = {
- 
-        }
+        this.keysBeingPressed = {}
 
         // Bind event handlers to ensure 'this' context is correct
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
+    getGameScreenDimensions() {
+        return this.gameScreen.getBoundingClientRect()
+    }
 
+    setGameScreenDimensions() {
+        const data = this.getGameScreenDimensions()
+        // console.log(data)
+        this.gameplayArea.leftBound = data.left
+        this.gameplayArea.rightBound = data.right
+        this.gameplayArea.upperBound = data.top
+        this.gameplayArea.lowerBound = data.bottom
+        console.log(this.gameplayArea)
+    }
 
-     updatePlayerPosition() {
+    updatePlayerPosition() {
         if (this.keysBeingPressed.w) {
+            if(this.playerOne.topLeft.y <= this.gameplayArea.upperBound) return
+            
             this.playerOne.moveUp()
         }
     
         if (this.keysBeingPressed.s) {
+            if(this.playerOne.bottomRight.y >= this.gameplayArea.lowerBound) return
+
             this.playerOne.moveDown()
         }
     
         if (this.keysBeingPressed.ArrowUp) {
+            if(this.playerTwo.topLeft.y <= this.gameplayArea.upperBound) return
+
             this.playerTwo.moveUp()
         }
     
         if (this.keysBeingPressed.ArrowDown) {
+            if(this.playerTwo.bottomRight.y >= this.gameplayArea.lowerBound) return
+
             this.playerTwo.moveDown()
         }
     }
@@ -158,7 +167,7 @@ class State {
     
     handleKeyUp(event) {
         this.keysBeingPressed[event.key] = false;
-        this.updatePlayerPosition();
+        // this.updatePlayerPosition();
     }
 
     updateBallPosition() {
@@ -177,15 +186,12 @@ class State {
     }
 }
 
-
-
 /*-------------------------------- Constants --------------------------------*/
 const gameScreens = []
 /*-------------------------------- Variables --------------------------------*/
 
 /*------------------------ Cached Element References ------------------------*/
 const gameContainer = document.querySelector('.game-container')
-
 
 // Add screens to gameScreens array
 gameScreens.push(document.querySelector('.start-screen'))
@@ -219,14 +225,31 @@ const showScreen = (screenClassNoDot) => {
     })
 }
 
+
+
+
+// start a loop that moves the ball
+//     ball position moves right and up to begin
+//     if ball y position touches the upper or lower limits of the gamespace flip directions
+//     if ball x position touches the right or left paddle flip directions
+//     if ball x touches user paddle speed up
+//     if either paddle position moved repaint paddle with new position
+//     if ball touches right or left limit of gamespace add point to correct player and reset ball position and speed
+//     if either players points equal the score limit end the game by hiding the game html and showing a win or lose message and a play again button
+
+
 const init = () => {
     const playerOne = new Paddle(playerOnePaddleElement)
     const playerTwo = new Paddle(playerTwoPaddleElement)
     const ball = new Ball(ballElement)
-    const state = new State(playerOne, playerTwo, ball)
+    const state = new State(playerOne, playerTwo, ball, gameScreens[1])
 
     state.ball.direction.up = true
     state.ball.direction.right = true
+
+    // console.log(gameScreens[1])
+    state.setGameScreenDimensions()
+    console.log(playerOne)
 
     const gameLoop = () => {
         state.updateBallPosition()
@@ -238,7 +261,6 @@ const init = () => {
     document.addEventListener('keydown', state.handleKeyDown)
     document.addEventListener('keyup', state.handleKeyUp)
 }
-
 
 const handleClick = (event) => {
     buttonClass = event.target.className
@@ -282,82 +304,3 @@ document.addEventListener('DOMContentLoaded', () => {
         showScreen('end-screen')
     })
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// register handleClick to be run after the DOM content loads 
-// click event required to handle game start and restart/options
-// paddle control can be several options:
-//     1. mouse position on screen
-//     2. any key mapping
-//     3. buttons on screen (dislike)
-
-// for this game handleClick will be registered on the game container which will contain a 
-// start button, once the start button is clicked it will change the display 
-// -removing start button- to ask for the difficulty -easy,medium,hard<-buttons, once a difficulty 
-//  is selected it runs init which starts a 3 second countdown timer and starts the game, 
-
-// init()
-// create objects from classes (new ball, new userPaddle, new computerPaddle)
-// initialize state variables maybe state should be a class too
-
-// start a loop that moves the ball
-//     ball position moves right and up to begin
-//     if ball y position touches the upper or lower limits of the gamespace flip directions
-//     if ball x position touches the right or left paddle flip directions
-//     if ball x touches user paddle speed up
-//     if either paddle position moved repaint paddle with new position
-//     if ball touches right or left limit of gamespace add point to correct player and reset ball position and speed
-//     if either players points equal the score limit end the game by hiding the game html and showing a win or lose message and a play again button
-
