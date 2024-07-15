@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./js/app.js"></script>
+    <title>Pong</title>
+</head>
+<body>
+<header>
+    <h1>Pong</h1>
+    <button class="end">End</button>
+</header>
+<main>
+    <div class="game-container">
+        <section class="start-screen ">
+            <button class="start-button">Start Game</button>
+            <button class="how-to-play-button">How To Play</button>
+            <p>Choose Your Difficulty</p>
+            <div>
+                <button class="easy-button">Easy</button>
+                <button class="medium-button">Medium</button>
+                <button class="hard-button">Hard</button>
+            </div>
+        </section>
+
+        <section class="gameplay-screen hidden">
+            <div class="score-board">
+                <p class="player-1-score-p">Player1 Score: <span class="player-1-score-value">0</span></p>
+                <p class="player-2-score-p">Player2 Score: <span class="player-2-score-value">0</span></p>
+            </div>
+            <div class="paddle player-1-paddle"></div>
+            <div class="paddle player-2-paddle"></div>
+            <div class="ball"></div>
+        </section>
+
+        <section class="end-screen hidden">
+            <h2>Game Over</h2>
+            <p>Player1 score: <span class="final-player-1-score">0</span></p>
+            <p>Player2 score: <span class="final-player-2-score">0</span></p>
+            <button class="play-again-button">Play Again</button>
+        </section>
+
+        <section class="how-to-play-screen hidden">
+            <h2>Rules</h2>
+            <p>Ball moves</p>
+            <p>Hit ball</p>
+            <button class="back-button">Back</button>
+        </section>
+    </div>
+</main>
+</body>
+</html>
+
+

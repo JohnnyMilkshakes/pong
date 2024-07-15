@@ -107,6 +107,11 @@ Avoid using canvas if possible
 * As a user, I want to pause and resume the game so that I can take breaks when needed.
 
 * As a user, I want to view my highest score so that I can track my progress over time.
+* As a user, I want to be able to view a list of previous high scores against the computer
+
+* As a user, I want to be able to play another player online.
+
+* As a user, I want my player vs player score saved in a separate database to view.
 
 ## Pseudocode:
 ```

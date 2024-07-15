@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(135, 133, 133);
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 500%;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(126, 125, 125);
+    border-radius: 10px;
+}
+
+.ball {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.game-container {
+    width: 50%;
+    height: 75%;
+    background-color: rgb(46, 45, 45);
+}
+
+.gameplay-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.start-screen, .end-screen, .how-to-play-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+button {
+    padding: 10px 50px;
+    margin: 0 10px;
+    background-color: rgb(43, 42, 42);
+    color: rgb(253, 253, 252);
+    border: dotted;
+    border-color: rgb(1, 245, 249);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: rgb(105, 105, 104);
+}
+
+p {
+    color: aqua;
+    margin: 0;
+    text-align: center;
+}
+
+h2 {
+    color: aliceblue;
+    font-size: 45px;
+    margin: 0 0 100px 0;
+}
+
+h3 {
+    color: white ;
+}
+
+.visible {
+    display: block;
+}
+
+
+.start-button {
+    width: 200px;
+    height: 50px;
+}
+
+.how-to-play-button {
+    margin: 0 0 50px 0;
+}
+
+.easy-button {
+    background-color: rgb(43, 42, 42);
+    color: rgb(252, 252, 250);
+    border: dotted;
+    border-color: rgb(1, 249, 38);
+}
+
+.medium-button {
+    background-color: rgb(43, 42, 42);
+    color: rgb(253, 253, 252);
+    border: dotted;
+    border-color: rgb(249, 245, 1);
+}
+
+.hard-button {
+    background-color: rgb(43, 42, 42);
+    color: rgb(252, 252, 251);
+    border: dotted;
+    border-color: rgb(249, 61, 61);
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+.score-board {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.score-board > * {
+    display: inline;
+    
+}
+
+.player-1-score-p {
+    float: left;
+    margin-left: 25px;
+}
+
+.gameplay-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px; /* Adjust the width of the line */
+    height: 100%;
+    background-color: white; /* Color of the line */
+    background: repeating-linear-gradient(
+        rgb(1, 252, 248),
+        rgb(0, 245, 249) 5px,
+        transparent 5px,
+        transparent 10px
+    );
+    transform: translateX(-50%);
+}
+
+/* .score-board h3 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    color: aqua;
+} */
+
+.player-2-score-p {
+    float: right;
+    margin-right: 25px;
+}
+
+
+.paddle {
+    position: absolute;
+    width: 10px; /* Adjust the width to your preference */
+    height: 60px; /* Adjust the height to your preference */
+    background-color: white;
+}
+
+.player-1-paddle {
+    left: 10px; /* Position the player's paddle on the left side */
+
+    top: 50%; /* positions the top of the paddle at 50% of the height 
+    of its parent container (gameplay-board). 
+    This would normally position the top edge of the paddle at the vertical center of the container,
+    effectively shifting the paddle down by half its own height.*/ 
+
+    transform: translateY(-20px); /* is then used to move the paddle up by 50% of its own height. 
+    This negates the initial downward shift, thereby centering the paddle perfectly within the 
+    container. */
+}
+
+.player-2-paddle {
+    right: 10px; /* Position the computer's paddle on the right side */
+    top: 50%; /* Center it vertically */
+    transform: translateY(-50%); /* Center it vertically */
+}
