@@ -76,8 +76,9 @@ class GameElement {
 
     updatePosition() {
         this.htmlElement.style.transform = 
-        `translateY(${this.startPointTopLeft.y - this.topLeft.y}px)`;
-    }
+        `translate(${this.topLeft.x - this.startPointTopLeft.x}px, 
+                   ${this.startPointTopLeft.y - this.topLeft.y}px)`
+}
 
     getElementData() {
         return this.htmlElement.getBoundingClientRect()
@@ -90,8 +91,13 @@ class Ball extends GameElement{
     constructor(htmlElement, speed, direction) {
         super(htmlElement)
 
-        this.speed = speed || 10
-        this.direction = direction
+        this.speed = speed || 1
+        this.direction = {
+            right: false,
+            left: false,
+            up: false,
+            down: false
+        }
     }
 }
 
@@ -99,7 +105,7 @@ class Paddle extends GameElement {
     constructor(htmlElement, speed) {
         super(htmlElement)
 
-        this.speed = speed || 10     
+        this.speed = speed || 15     
     }
 
 }
@@ -154,6 +160,21 @@ class State {
         this.keysBeingPressed[event.key] = false;
         this.updatePlayerPosition();
     }
+
+    updateBallPosition() {
+
+        if (this.ball.direction.right) {
+            this.ball.moveRight();
+        } else if (this.ball.direction.left) {
+            this.ball.moveLeft();
+        }
+    
+        if (this.ball.direction.up) {
+            this.ball.moveUp();
+        } else if (this.ball.direction.down) {
+            this.ball.moveDown();
+        }
+    }
 }
 
 
@@ -198,14 +219,22 @@ const showScreen = (screenClassNoDot) => {
     })
 }
 
-
-
-
 const init = () => {
     const playerOne = new Paddle(playerOnePaddleElement)
     const playerTwo = new Paddle(playerTwoPaddleElement)
     const ball = new Ball(ballElement)
-    let state = new State(playerOne, playerTwo, ball)
+    const state = new State(playerOne, playerTwo, ball)
+
+    state.ball.direction.up = true
+    state.ball.direction.right = true
+
+    const gameLoop = () => {
+        state.updateBallPosition()
+        requestAnimationFrame(gameLoop)
+    }
+
+    requestAnimationFrame(gameLoop)
+
     document.addEventListener('keydown', state.handleKeyDown)
     document.addEventListener('keyup', state.handleKeyUp)
 }
@@ -216,7 +245,6 @@ const handleClick = (event) => {
     if (buttonClass === 'start-button') {
         showScreen('gameplay-screen')
         init()
-
     }
 
     if (buttonClass === 'how-to-play-button') {
@@ -250,56 +278,14 @@ const handleClick = (event) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     gameContainer.addEventListener('click', handleClick)
+    endButton.addEventListener('click', (event) => {
+        showScreen('end-screen')
+    })
 })
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-// startButton.addEventListener('click', (event) => {
-//     showScreen('gameplay-screen')
-
-//     console.log(playerOne)
-//     console.log(playerTwo)
-//     console.log(ball)
-
-//     // setInterval(() => {
-//     //     playerOne.moveDown()
-//     // },1000)
-        
-// })
-
-endButton.addEventListener('click', (event) => {
-    showScreen('end-screen')
-})
-
-// howToPlayButton.addEventListener('click', (event) => {
-//     showScreen(`how-to-play-screen`)
-// })
-
-// backButton.addEventListener('click', (event) => {
-//     showScreen(`start-screen`)
-// })
-
-// playAgainButton.addEventListener('click', (event) => {
-//     showScreen(`start-screen`)
-// })
-
-
-// document.addEventListener('keydown', (event) => {
-
-
-// })
 
 
 
