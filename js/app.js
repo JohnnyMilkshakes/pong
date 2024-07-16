@@ -14,13 +14,16 @@ import { gameScreens,
         playerSelectDiv,
         difficultySelectDiv,
         howToPlayButton,
-        startButton } from './constants.js'
+        startButton,
+        twoPlayerButton } from './constants.js'
 
 let playerOne, playerTwo, ball, state
 
 // Show specific screen based on the class name
 const showScreen = (screenClassNoDot) => {
     gameScreens.forEach((screen) => {
+        // I went back and forth a few times with chatGPT to get this conditional
+        // I made it the ternary operator bc it was too verbose
         Object.values(screen.classList).includes(screenClassNoDot)
             ? screen.classList.remove('hidden')
             : screen.classList.add('hidden')
@@ -38,8 +41,6 @@ const init = () => {
     state.ball.direction.right = true
 
     state.setGameScreenDimensions()
-    console.log(playerOne)
-
 
     let fpsContainer = document.getElementById('fps')
     let lastFrameTime = performance.now()
@@ -82,6 +83,7 @@ const handleClick = (event) => {
     const buttonClass = event.target.className
     if (buttonClass === 'start-button') {
         showScreen('gameplay-screen')
+        twoPlayerButton.classList.remove('button-selected')
         init()
     }
 
@@ -94,11 +96,14 @@ const handleClick = (event) => {
        difficultySelectDiv.classList.remove('hidden')
 
        howToPlayButton.style.marginBottom = '0px'
+       twoPlayerButton.classList.remove('button-selected')
+
 
     }
 
     if (buttonClass === 'two-player-button') {
         startButton.classList.remove('hidden')
+        twoPlayerButton.classList.add('button-selected')
     }
 
     if (buttonClass === 'difficulty-back-button') {
@@ -226,13 +231,10 @@ const ballCollisionDetector = () => {
 }
 
 const updateScore = () => {
-    console.log(endScreenPlayerOneScore)
-    console.log(endScreenPlayerTwoScore)
     playerOneScore.innerText = state.score.playerOne
     playerTwoScore.innerText = state.score.playerTwo
     endScreenPlayerOneScore.innerText = state.score.playerOne
     endScreenPlayerTwoScore.innerText = state.score.playerTwo
-
 }
 
 const checkWinner = () => {
@@ -269,13 +271,11 @@ const handleKeyUp = (event) => {
     if (event.key === 'w' || event.key === 's') {
         clearInterval(state.playerOneSpeedLoopInterval)
         state.playerOneSpeedLoopInterval = null
-        console.log('Player 1 Loop stopped')
     }
 
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
         clearInterval(state.playerTwoSpeedLoopInterval)
         state.playerTwoSpeedLoopInterval = null
-        console.log('Player 2 Loop stopped')
     }
 }
 

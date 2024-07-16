@@ -14,6 +14,8 @@ export const difficultySelectDiv = document.querySelector('.difficulty-select');
 
 export const howToPlayButton = document.querySelector('.how-to-play-button');
 export const startButton = document.querySelector('.start-button');
+export const twoPlayerButton = document.querySelector('.two-player-button');
+
 
 
 

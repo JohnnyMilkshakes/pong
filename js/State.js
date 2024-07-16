@@ -39,7 +39,6 @@ export class State {
         this.gameplayArea.rightBound = data.right;
         this.gameplayArea.upperBound = data.top;
         this.gameplayArea.lowerBound = data.bottom;
-        console.log(this.gameplayArea);
     }
 
     setKeyPress(event) {

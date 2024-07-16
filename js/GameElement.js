@@ -6,7 +6,7 @@ export class GameElement {
         this.htmlElement = htmlElement;
 
         const data = this.getElementData();
-        console.log(data);
+        
         this.topLeft = {
             x: data.left,
             y: data.top
@@ -63,7 +63,7 @@ export class GameElement {
     updatePosition() {
         this.htmlElement.style.transform = 
             `translate(${this.topLeft.x - this.startPointTopLeft.x}px, 
-                       ${this.topLeft.y - this.startPointTopLeft.y}px)`;
+                       ${this.topLeft.y - this.startPointTopLeft.y}px)`
     }
 
     resetPosition() {

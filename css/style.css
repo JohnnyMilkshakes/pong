@@ -79,6 +79,10 @@ main {
     height: 100%;
 }
 
+.how-to-play-screen > p {
+    color: white;
+}
+
 button {
     padding: 10px 50px;
     margin: 0 10px;
@@ -92,6 +96,11 @@ button {
 
 button:hover {
     background-color: rgb(105, 105, 104);
+}
+
+.button-selected {
+    background-color: rgb(0, 121, 123);
+
 }
 
 .back-button-container {
@@ -113,7 +122,7 @@ p {
 h2 {
     color: aliceblue;
     font-size: 45px;
-    margin: 0 0 100px 0;
+    margin: 0;
 }
 
 h3 {
