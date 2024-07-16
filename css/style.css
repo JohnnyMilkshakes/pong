@@ -41,7 +41,7 @@ main {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
 }
 
 .game-container {
@@ -200,13 +200,10 @@ h3 {
     This would normally position the top edge of the paddle at the vertical center of the container,
     effectively shifting the paddle down by half its own height.*/ 
 
-    transform: translateY(-20px); /* is then used to move the paddle up by 50% of its own height. 
-    This negates the initial downward shift, thereby centering the paddle perfectly within the 
-    container. */
+   
 }
 
 .player-2-paddle {
     right: 10px; /* Position the computer's paddle on the right side */
     top: 50%; /* Center it vertically */
-    transform: translateY(-50%); /* Center it vertically */
 }
