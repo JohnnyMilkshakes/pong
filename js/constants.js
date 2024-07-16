@@ -8,6 +8,13 @@ export const playerTwoScore = document.querySelector('.player-2-score-value');
 export const endScreenPlayerOneScore = document.querySelector('.final-player-1-score-value');
 export const endScreenPlayerTwoScore = document.querySelector('.final-player-2-score-value');
 export const winMessage = document.querySelector('.win-message');
+export const playerSelectDiv = document.querySelector('.player-select');
+export const difficultySelectDiv = document.querySelector('.difficulty-select');
+
+
+export const howToPlayButton = document.querySelector('.how-to-play-button');
+export const startButton = document.querySelector('.start-button');
+
 
 
 

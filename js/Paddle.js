@@ -10,3 +10,5 @@ export class Paddle extends GameElement {
         this.speed = speed || 2;
     }
 }
+
+

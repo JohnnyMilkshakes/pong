@@ -13,22 +13,29 @@
 </header>
 <main>
     <div class="game-container">
-        <section class="start-screen ">
-            <button class="start-button">Start Game</button>
+        <section class="start-screen">
+            <button class="start-button hidden">Start Game</button>
             <button class="how-to-play-button">How To Play</button>
-            <p>Choose Your Difficulty</p>
-            <div>
+            <div class="player-select">
+                <button class="one-player-button">One Player</button>
+                <button class="two-player-button">Two Player</button>
+            </div>
+            <div class="difficulty-select hidden">
+                <p class="">Choose Your Difficulty</p>
                 <button class="easy-button">Easy</button>
                 <button class="medium-button">Medium</button>
                 <button class="hard-button">Hard</button>
+                <div class="back-button-container">
+                    <button class="difficulty-back-button">Back</button>
+                </div>
             </div>
         </section>
 
         <section class="gameplay-screen hidden">
             <div id="fps">FPS: 0</div>
             <div class="score-board">
-                <p class="player-1-score-p">Player1 Score: <span class="player-1-score-value">0</span></p>
-                <p class="player-2-score-p">Player2 Score: <span class="player-2-score-value">0</span></p>
+                <p class="player-1-score-p">Score: <span class="player-1-score-value">0</span></p>
+                <p class="player-2-score-p">Score: <span class="player-2-score-value">0</span></p>
             </div>
             <div class="paddle player-1-paddle"></div>
             <div class="paddle player-2-paddle"></div>
@@ -38,8 +45,8 @@
         <section class="end-screen hidden">
             <h2>Game Over</h2>
             <p class="win-message">0</p>
-            <p>Player1 score: <span class="final-player-1-score-value">0</span></p>
-            <p>Player2 score: <span class="final-player-2-score-value">0</span></p>
+            <p>Player One score: <span class="final-player-1-score-value">0</span></p>
+            <p>Player Two score: <span class="final-player-2-score-value">0</span></p>
             <button class="play-again-button">Play Again</button>
         </section>
 
