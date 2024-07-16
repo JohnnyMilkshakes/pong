@@ -21,12 +21,10 @@ export class State {
         };
     
         this.keysBeingPressed = {};
+        this.playerOneSpeedLoopInterval = null;
+        this.playerTwoSpeedLoopInterval = null;
+        this.winner = ''
 
-        this.playerSpeedLoopInterval = null;
-
-        // // Bind event handlers to ensure 'this' context is correct
-        // this.handleKeyDown = this.handleKeyDown.bind(this);
-        // this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
     // Get the dimensions of the game screen
@@ -50,5 +48,13 @@ export class State {
 
     removeKeyPress(event) {
         this.keysBeingPressed[event.key] = false
+    }
+
+    setWinner() {
+        if (this.score.playerOne >= 10) {
+            this.winner = 'Player One'
+        } else if (this.score.playerTwo >= 10) {
+            this.winner = 'Player Two'
+        }
     }
 }

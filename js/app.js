@@ -1,7 +1,16 @@
 import { Ball } from './Ball.js';
 import { Paddle } from './Paddle.js';
 import { State } from './State.js';
-import { gameScreens, gameContainer, endButton, ballElement, playerOnePaddleElement, playerTwoPaddleElement } from './constants.js';
+import { gameScreens, 
+         gameContainer, 
+         ballElement, 
+         playerOnePaddleElement, 
+         playerTwoPaddleElement,
+         playerOneScore,
+         playerTwoScore,
+         endScreenPlayerOneScore,
+         endScreenPlayerTwoScore,
+         winMessage } from './constants.js';
 
 let playerOne, playerTwo, ball, state;
 
@@ -27,9 +36,34 @@ const init = () => {
     state.setGameScreenDimensions();
     console.log(playerOne);
 
+
+    // let fpsContainer = document.getElementById('fps');
+    // let lastFrameTime = performance.now();
+    // let frameCount = 0;
+    // let fps = 0;
+
+
     const gameLoop = () => {
-        ballCollisionDetector()
+
+        // let now = performance.now();
+        // frameCount++;
+        // let deltaTime = now - lastFrameTime;
+
+        // if (deltaTime >= 1000) {
+        //     fps = frameCount;
+        //     frameCount = 0;
+        //     lastFrameTime = now;
+        //     fpsContainer.textContent = `FPS: ${fps}`;
+        // }
+
+        ballCollisionDetector();
         updateBallPosition();
+        if(checkWinner()) {
+            state.setWinner()
+            winMessage.innerText = `${state.winner} Wins!`
+            showScreen('end-screen')
+            return
+        }
         requestAnimationFrame(gameLoop);
     };
 
@@ -71,33 +105,35 @@ const handleClick = (event) => {
 };
 
 // Update the position of the players
-const updatePlayerPosition = () => {
+// Update the position of player one
+const updatePlayerOnePosition = () => {
     if (state.keysBeingPressed.w) {
-        if (playerOne.topLeft.y <= state.gameplayArea.upperBound) return;
-        console.log('upperbound : ' + state.gameplayArea.upperBound)
-        console.log('top : ' + playerOne.topLeft.y)
-        console.log('bottom : ' + playerOne.bottomRight.y)
-
-        playerOne.moveUp();
+        if (playerOne.topLeft.y > state.gameplayArea.upperBound) {
+            playerOne.moveUp();
+        }
     }
 
     if (state.keysBeingPressed.s) {
-        if (playerOne.bottomRight.y >= state.gameplayArea.lowerBound) return;
-        playerOne.moveDown();
+        if (playerOne.bottomRight.y < state.gameplayArea.lowerBound) {
+            playerOne.moveDown();
+        }
     }
+};
 
+// Update the position of player two
+const updatePlayerTwoPosition = () => {
     if (state.keysBeingPressed.ArrowUp) {
-        if (playerTwo.topLeft.y <= state.gameplayArea.upperBound) return;
-        playerTwo.moveUp();
+        if (playerTwo.topLeft.y > state.gameplayArea.upperBound) {
+            playerTwo.moveUp();
+        }
     }
 
     if (state.keysBeingPressed.ArrowDown) {
-        if (playerTwo.bottomRight.y >= state.gameplayArea.lowerBound) return;
-        playerTwo.moveDown();
+        if (playerTwo.bottomRight.y < state.gameplayArea.lowerBound) {
+            playerTwo.moveDown();
+        }
     }
-}
-
-
+};
 
 // Update the position of the ball
 const updateBallPosition = () => {
@@ -113,77 +149,109 @@ const updateBallPosition = () => {
     } else if (ball.direction.down) {
         ball.moveDown();
     }
-}
+};
 
 const ballCollisionDetector = () => {
     if (ball.topLeft.x <= playerOne.bottomRight.x &&
         ball.topLeft.y <= playerOne.bottomRight.y &&
         ball.bottomRight.y >= playerOne.topLeft.y) {
-            // if true player 1 paddle was touched, switch directions
-        ball.direction.right = true
-        ball.direction.left = false
+        // if true player 1 paddle was touched, switch directions
+        ball.direction.right = true;
+        ball.direction.left = false;
+        ball.speed = ball.speed + 0.5
     }
 
     if (ball.bottomRight.x >= playerTwo.topLeft.x &&
         ball.bottomRight.y >= playerTwo.topLeft.y &&
         ball.topLeft.y <= playerTwo.bottomRight.y) {
-            // if true player 2 paddle was touched, switch directions
-        ball.direction.right = false
-        ball.direction.left = true
+        // if true player 2 paddle was touched, switch directions
+        ball.direction.right = false;
+        ball.direction.left = true;
+        ball.speed = ball.speed + 0.5
+
     }
 
     // if the ball touches the top
     if (ball.topLeft.y <= state.gameplayArea.upperBound) {
-        ball.direction.up = false
-        ball.direction.down = true
-
+        ball.direction.up = false;
+        ball.direction.down = true;
     // if the ball touches the bottom
     } else if (ball.bottomRight.y >= state.gameplayArea.lowerBound) {
-        ball.direction.up = true
-        ball.direction.down = false
+        ball.direction.up = true;
+        ball.direction.down = false;
     }
 
     // if the ball touches the right side net
     if (ball.bottomRight.x >= state.gameplayArea.rightBound) {
-        ball.resetPosition()        
-        
+        state.score.playerOne = state.score.playerOne + 1
+        updateScore()
+        ball.resetPosition();
+        ball.speed = 2
     // if the ball touches the left side net
     } else if (ball.topLeft.x <= state.gameplayArea.leftBound) {
-        ball.resetPosition()        
+        state.score.playerTwo = state.score.playerTwo + 1
+        updateScore()
+        ball.resetPosition();
+        ball.speed = 2
+
     }
+};
+
+
+const updateScore = () => {
+    console.log(endScreenPlayerOneScore)
+    console.log(endScreenPlayerTwoScore)
+    playerOneScore.innerText = state.score.playerOne
+    playerTwoScore.innerText = state.score.playerTwo
+    endScreenPlayerOneScore.innerText = state.score.playerOne
+    endScreenPlayerTwoScore.innerText = state.score.playerTwo
+
 }
 
-
-
+const checkWinner = () => {
+    if (state.score.playerOne >= 10 || state.score.playerTwo >= 10) {
+        return true
+    }
+}
 
 // Handle key down events
 const handleKeyDown = (event) => {
-    console.log(event);
     state.setKeyPress(event);
 
-    if (!state.playerSpeedLoopInterval) {  // Prevent starting multiple intervals
-        state.playerSpeedLoopInterval = setInterval(() => {
-            // console.log('Loop running');
-            updatePlayerPosition();
-            // Your loop logic here
-        }, 1); // Adjust the interval time as needed
+    if (event.key === 'w' || event.key === 's') {
+        if (!state.playerOneSpeedLoopInterval) {
+            state.playerOneSpeedLoopInterval = setInterval(() => {
+                updatePlayerOnePosition();
+            }, 0.1); // Adjust the interval time as needed
+        }
     }
-}
+
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+        if (!state.playerTwoSpeedLoopInterval) {
+            state.playerTwoSpeedLoopInterval = setInterval(() => {
+                updatePlayerTwoPosition();
+            }, 0.1); // Adjust the interval time as needed
+        }
+    }
+};
 
 // Handle key up events
 const handleKeyUp = (event) => {
-    state.removeKeyPress(event)
-    if (state.playerSpeedLoopInterval) {
-        clearInterval(state.playerSpeedLoopInterval);
-        state.playerSpeedLoopInterval = null;
-        console.log('Loop stopped');
-    }
-}
+    state.removeKeyPress(event);
 
+    if (event.key === 'w' || event.key === 's') {
+        clearInterval(state.playerOneSpeedLoopInterval);
+        state.playerOneSpeedLoopInterval = null;
+        console.log('Player 1 Loop stopped');
+    }
+
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+        clearInterval(state.playerTwoSpeedLoopInterval);
+        state.playerTwoSpeedLoopInterval = null;
+        console.log('Player 2 Loop stopped');
+    }
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     gameContainer.addEventListener('click', handleClick);
-    endButton.addEventListener('click', () => {
-        showScreen('end-screen');
-    });
 });

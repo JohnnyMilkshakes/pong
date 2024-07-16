@@ -10,7 +10,6 @@
 <body>
 <header>
     <h1>Pong</h1>
-    <button class="end">End</button>
 </header>
 <main>
     <div class="game-container">
@@ -26,6 +25,7 @@
         </section>
 
         <section class="gameplay-screen hidden">
+            <div id="fps">FPS: 0</div>
             <div class="score-board">
                 <p class="player-1-score-p">Player1 Score: <span class="player-1-score-value">0</span></p>
                 <p class="player-2-score-p">Player2 Score: <span class="player-2-score-value">0</span></p>
@@ -37,8 +37,9 @@
 
         <section class="end-screen hidden">
             <h2>Game Over</h2>
-            <p>Player1 score: <span class="final-player-1-score">0</span></p>
-            <p>Player2 score: <span class="final-player-2-score">0</span></p>
+            <p class="win-message">0</p>
+            <p>Player1 score: <span class="final-player-1-score-value">0</span></p>
+            <p>Player2 score: <span class="final-player-2-score-value">0</span></p>
             <button class="play-again-button">Play Again</button>
         </section>
 
