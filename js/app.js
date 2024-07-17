@@ -13,7 +13,6 @@ import { handleStartButton, handleHowToPlayButton, handleOnePlayerButton,
         handleBackButton, handleEasyButton, handleMediumButton, handleHardButton
  } from './handlers.js'
 
-
 let playerOne, playerTwo, ball, state
 
 // Initialize the game
@@ -78,53 +77,28 @@ const init = () => {
 // Handle button clicks
 const handleClick = (event) => {
     const buttonClass = event.target.className
-
-    switch (buttonClass) {
-        case 'start-button':
-            handleStartButton();
-            init();
-            break;
-        case 'how-to-play-button':
-            handleHowToPlayButton();
-            break;
-        case 'one-player-button':
-            handleOnePlayerButton();
-            break;
-        case 'two-player-button':
-            handleTwoPlayerButton();
-            break;
-        case 'difficulty-back-button':
-            handleDifficultyBackButton();
-            break;
-        case 'play-again-button':
-            handlePlayAgainButton();
-            break;
-        case 'back-button':
-            handleBackButton();
-            break;
-        case 'easy-button':
-            handleEasyButton();
-            break;
-        case 'medium-button':
-            handleMediumButton();
-            break;
-        case 'hard-button':
-            handleHardButton();
-            break;
-        default:
-            console.log(`No handler for ${buttonClass}`);
-            break;
+    const handlers = {
+        'start-button': () => { handleStartButton(); init() },
+        'how-to-play-button': handleHowToPlayButton,
+        'one-player-button': handleOnePlayerButton,
+        'two-player-button': handleTwoPlayerButton,
+        'difficulty-back-button': handleDifficultyBackButton,
+        'play-again-button': handlePlayAgainButton,
+        'back-button': handleBackButton,
+        'easy-button': handleEasyButton,
+        'medium-button': handleMediumButton,
+        'hard-button': handleHardButton
     }
+
+    if (handlers[buttonClass]) handlers[buttonClass]()
 }
 
 // Handle key down events
 const handleKeyDown = (event) => {
     state.setKeyPress(event)
 
-    if (event.key === 'p') {
-        state.togglePause()
-    }
-
+    if (event.key === 'p') state.togglePause()
+    
     if (state.pause) return
 
     if (event.key === 'w' || event.key === 's') {
