@@ -83,69 +83,53 @@ export const ballCollisionDetector = () => {
     if (ball.topLeft.x <= playerOne.bottomRight.x &&
         ball.topLeft.y <= playerOne.bottomRight.y &&
         ball.bottomRight.y >= playerOne.topLeft.y) {
-        // if true player 1 paddle was touched, switch directions
+        // if true player 1 paddle was touched
+
         playerOne.getCenterY()
         ball.getCenterY()
-
-        ball.direction.right = true
-        ball.direction.left = false
+        ball.flipRightLeft()
 
         if (ball.centerY < (playerOne.centerY - 25)) {
-            ball.direction.up = true
-            ball.direction.down = false
+            ball.setDirectionUp()
             ball.speed = ball.speed + 2
 
         } else if (ball.centerY > (playerOne.centerY + 25)) {
-            ball.direction.up = false
-            ball.direction.down = true
+            ball.setDirectionDown()
             ball.speed = ball.speed + 2
 
-        } else if (ball.speed > 3){
+        } else if (ball.speed > 5){
             ball.speed = ball.speed - 1
         }
-
-        console.log(ball.speed)
-
-
     }
 
     if (ball.bottomRight.x >= playerTwo.topLeft.x &&
         ball.bottomRight.y >= playerTwo.topLeft.y &&
         ball.topLeft.y <= playerTwo.bottomRight.y) {
-        // if true player 2 paddle was touched, switch directions
+        // if true player 2 paddle was touched
+
         playerTwo.getCenterY()
         ball.getCenterY()
+        ball.flipRightLeft()
 
         if (ball.centerY < (playerTwo.centerY - 25)) {
-            ball.direction.up = true
-            ball.direction.down = false
+            ball.setDirectionUp()
             ball.speed = ball.speed + 2
 
         } else if (ball.centerY > (playerTwo.centerY + 25)) {
-            ball.direction.up = false
-            ball.direction.down = true
+            ball.setDirectionDown()
             ball.speed = ball.speed + 2
 
-        } else if (ball.speed > 3) {
+        } else if (ball.speed > 5) {
             ball.speed = ball.speed - 1
         }
-        ball.direction.right = false
-        ball.direction.left = true
-
-        console.log(ball.speed)
-
-    
-
     }
 
     // if the ball touches the top
     if (ball.topLeft.y <= state.gameplayArea.upperBound) {
-        ball.direction.up = false
-        ball.direction.down = true
+        ball.flipUpDown()
     // if the ball touches the bottom
     } else if (ball.bottomRight.y >= state.gameplayArea.lowerBound) {
-        ball.direction.up = true
-        ball.direction.down = false
+        ball.flipUpDown()
     }
 
     // if the ball touches the right side net

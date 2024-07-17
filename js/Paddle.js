@@ -5,6 +5,5 @@ export class Paddle extends GameElement {
     constructor(htmlElement, speed) {
         super(htmlElement)
 
-        this.speed = speed || 2
     }
 }
