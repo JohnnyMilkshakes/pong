@@ -84,18 +84,57 @@ export const ballCollisionDetector = () => {
         ball.topLeft.y <= playerOne.bottomRight.y &&
         ball.bottomRight.y >= playerOne.topLeft.y) {
         // if true player 1 paddle was touched, switch directions
+        playerOne.getCenterY()
+        ball.getCenterY()
+
         ball.direction.right = true
         ball.direction.left = false
-        ball.speed = ball.speed + 1
+
+        if (ball.centerY < (playerOne.centerY - 25)) {
+            ball.direction.up = true
+            ball.direction.down = false
+            ball.speed = ball.speed + 2
+
+        } else if (ball.centerY > (playerOne.centerY + 25)) {
+            ball.direction.up = false
+            ball.direction.down = true
+            ball.speed = ball.speed + 2
+
+        } else if (ball.speed > 3){
+            ball.speed = ball.speed - 1
+        }
+
+        console.log(ball.speed)
+
+
     }
 
     if (ball.bottomRight.x >= playerTwo.topLeft.x &&
         ball.bottomRight.y >= playerTwo.topLeft.y &&
         ball.topLeft.y <= playerTwo.bottomRight.y) {
         // if true player 2 paddle was touched, switch directions
+        playerTwo.getCenterY()
+        ball.getCenterY()
+
+        if (ball.centerY < (playerTwo.centerY - 25)) {
+            ball.direction.up = true
+            ball.direction.down = false
+            ball.speed = ball.speed + 2
+
+        } else if (ball.centerY > (playerTwo.centerY + 25)) {
+            ball.direction.up = false
+            ball.direction.down = true
+            ball.speed = ball.speed + 2
+
+        } else if (ball.speed > 3) {
+            ball.speed = ball.speed - 1
+        }
         ball.direction.right = false
         ball.direction.left = true
-        ball.speed = ball.speed + 1
+
+        console.log(ball.speed)
+
+    
 
     }
 

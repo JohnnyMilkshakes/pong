@@ -29,6 +29,7 @@ export class GameElement {
 
         this.length = data.height
         this.width = data.width
+        this.centerY = this.getCenterY()
     }
 
     // Move the element up
@@ -76,5 +77,9 @@ export class GameElement {
     // Get the element's data
     getElementData() {
         return this.htmlElement.getBoundingClientRect()
+    }
+
+    getCenterY() {
+        this.centerY = this.topLeft.y + (this.length / 2)
     }
 }

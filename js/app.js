@@ -18,6 +18,10 @@ const init = () => {
     ball = new Ball(ballElement)
     state = new State(playerOne, playerTwo, ball, gameScreens[1])
 
+    console.log(playerOne)
+    console.log(playerTwo)
+
+
     state.ball.direction.up = true
     state.ball.direction.right = true
 
@@ -87,8 +91,6 @@ const handleClick = (event) => {
 
        howToPlayButton.style.marginBottom = '0px'
        twoPlayerButton.classList.remove('button-selected')
-
-
     }
 
     if (buttonClass === 'two-player-button') {
@@ -100,7 +102,6 @@ const handleClick = (event) => {
         difficultySelectDiv.classList.add('hidden')
         playerSelectDiv.classList.remove('hidden')
         startButton.classList.add('hidden')
-
     }
 
     if (buttonClass === 'play-again-button') {
@@ -137,12 +138,11 @@ const handleKeyDown = (event) => {
 
     if (state.pause) return
 
-
     if (event.key === 'w' || event.key === 's') {
         if (!state.playerOneSpeedLoopInterval) {
             state.playerOneSpeedLoopInterval = setInterval(() => {
                 updatePlayerOnePosition()
-            }, 0.1) // Adjust the interval time as needed
+            }, 1) // Adjust the interval time as needed
         }
     }
 
@@ -150,7 +150,7 @@ const handleKeyDown = (event) => {
         if (!state.playerTwoSpeedLoopInterval) {
             state.playerTwoSpeedLoopInterval = setInterval(() => {
                 updatePlayerTwoPosition()
-            }, 0.1) // Adjust the interval time as needed
+            }, 1) // Adjust the interval time as needed
         }
     }
 }
@@ -173,6 +173,5 @@ const handleKeyUp = (event) => {
 document.addEventListener('DOMContentLoaded', () => {
     gameContainer.addEventListener('click', handleClick)
 })
-
 
 export {playerOne, playerTwo, ball, state}
