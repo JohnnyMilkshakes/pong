@@ -84,52 +84,24 @@ export const ballCollisionDetector = () => {
         ball.topLeft.y <= playerOne.bottomRight.y &&
         ball.bottomRight.y >= playerOne.topLeft.y) {
         // if true player 1 paddle was touched
-
-        playerOne.getCenterY()
-        ball.getCenterY()
-        ball.flipRightLeft()
-
-        if (ball.centerY < (playerOne.centerY - 25)) {
-            ball.setDirectionUp()
-            ball.speed = ball.speed + 2
-
-        } else if (ball.centerY > (playerOne.centerY + 25)) {
-            ball.setDirectionDown()
-            ball.speed = ball.speed + 2
-
-        } else if (ball.speed > 5){
-            ball.speed = ball.speed - 1
-        }
+        ball.leftPaddleCollision(playerOne)
+        state.touch('Player One')
     }
 
     if (ball.bottomRight.x >= playerTwo.topLeft.x &&
         ball.bottomRight.y >= playerTwo.topLeft.y &&
         ball.topLeft.y <= playerTwo.bottomRight.y) {
         // if true player 2 paddle was touched
-
-        playerTwo.getCenterY()
-        ball.getCenterY()
-        ball.flipRightLeft()
-
-        if (ball.centerY < (playerTwo.centerY - 25)) {
-            ball.setDirectionUp()
-            ball.speed = ball.speed + 2
-
-        } else if (ball.centerY > (playerTwo.centerY + 25)) {
-            ball.setDirectionDown()
-            ball.speed = ball.speed + 2
-
-        } else if (ball.speed > 5) {
-            ball.speed = ball.speed - 1
-        }
+        ball.rightPaddleCollision(playerTwo)
+        state.touch('Player Two')
     }
 
     // if the ball touches the top
     if (ball.topLeft.y <= state.gameplayArea.upperBound) {
-        ball.flipUpDown()
+        ball.flipVerticalDirection()
     // if the ball touches the bottom
     } else if (ball.bottomRight.y >= state.gameplayArea.lowerBound) {
-        ball.flipUpDown()
+        ball.flipVerticalDirection()
     }
 
     // if the ball touches the right side net

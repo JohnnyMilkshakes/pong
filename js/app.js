@@ -6,8 +6,13 @@ import { showScreen, waitForUnpause, updatePlayerOnePosition, updatePlayerTwoPos
         updateBallPosition, ballCollisionDetector, checkWinner } from './utils.js'
 
 import { gameScreens, gameContainer, ballElement, playerOnePaddleElement, playerTwoPaddleElement,
-        winMessage, playerSelectDiv, difficultySelectDiv, howToPlayButton, startButton,
-        twoPlayerButton } from './constants.js'
+        winMessage } from './constants.js'
+
+import { handleStartButton, handleHowToPlayButton, handleOnePlayerButton,
+        handleTwoPlayerButton, handleDifficultyBackButton, handlePlayAgainButton, 
+        handleBackButton, handleEasyButton, handleMediumButton, handleHardButton
+ } from './handlers.js'
+
 
 let playerOne, playerTwo, ball, state
 
@@ -18,12 +23,9 @@ const init = () => {
     ball = new Ball(ballElement)
     state = new State(playerOne, playerTwo, ball, gameScreens[1])
 
-    console.log(playerOne)
-    console.log(playerTwo)
-
-
     state.ball.direction.up = true
     state.ball.direction.right = true
+    state.lastTouch = "Player One"
 
     state.setGameScreenDimensions()
 
@@ -34,6 +36,7 @@ const init = () => {
     let fps = 0
 
     const gameLoop = async () => {
+        // state.setGameScreenDimensions()
 
         // ChatGPT wrote the code below to implement the fps counter
         let now = performance.now()
@@ -75,56 +78,42 @@ const init = () => {
 // Handle button clicks
 const handleClick = (event) => {
     const buttonClass = event.target.className
-    if (buttonClass === 'start-button') {
-        showScreen('gameplay-screen')
-        twoPlayerButton.classList.remove('button-selected')
-        init()
-    }
 
-    if (buttonClass === 'how-to-play-button') {
-        showScreen('how-to-play-screen')
-    }
-
-    if (buttonClass === 'one-player-button') {
-       playerSelectDiv.classList.add('hidden')
-       difficultySelectDiv.classList.remove('hidden')
-
-       howToPlayButton.style.marginBottom = '0px'
-       twoPlayerButton.classList.remove('button-selected')
-    }
-
-    if (buttonClass === 'two-player-button') {
-        startButton.classList.remove('hidden')
-        twoPlayerButton.classList.add('button-selected')
-    }
-
-    if (buttonClass === 'difficulty-back-button') {
-        difficultySelectDiv.classList.add('hidden')
-        playerSelectDiv.classList.remove('hidden')
-        startButton.classList.add('hidden')
-    }
-
-    if (buttonClass === 'play-again-button') {
-        showScreen('start-screen')
-    }
-
-    if (buttonClass === 'back-button') {
-        showScreen('start-screen')
-    }
-
-    if (buttonClass === 'easy-button') {
-        startButton.classList.remove('hidden')
-        console.log('EZ')
-    }
-    if (buttonClass === 'medium-button') {
-        startButton.classList.remove('hidden')
-
-        console.log('MEDZ')
-    }
-    if (buttonClass === 'hard-button') {
-        startButton.classList.remove('hidden')
-
-        console.log('HARDZ')
+    switch (buttonClass) {
+        case 'start-button':
+            handleStartButton();
+            init();
+            break;
+        case 'how-to-play-button':
+            handleHowToPlayButton();
+            break;
+        case 'one-player-button':
+            handleOnePlayerButton();
+            break;
+        case 'two-player-button':
+            handleTwoPlayerButton();
+            break;
+        case 'difficulty-back-button':
+            handleDifficultyBackButton();
+            break;
+        case 'play-again-button':
+            handlePlayAgainButton();
+            break;
+        case 'back-button':
+            handleBackButton();
+            break;
+        case 'easy-button':
+            handleEasyButton();
+            break;
+        case 'medium-button':
+            handleMediumButton();
+            break;
+        case 'hard-button':
+            handleHardButton();
+            break;
+        default:
+            console.log(`No handler for ${buttonClass}`);
+            break;
     }
 }
 

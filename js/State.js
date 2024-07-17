@@ -1,6 +1,3 @@
-// State.js
-
-// Class representing the game state
 export class State {
     constructor(playerOne, playerTwo, ball, gameScreen) {
         this.playerOne = playerOne
@@ -25,7 +22,7 @@ export class State {
         this.playerTwoSpeedLoopInterval = null
         this.winner = ''
         this.pause = false
-
+        this.lastTouch = ''
     }
 
     // Get the dimensions of the game screen
@@ -60,5 +57,9 @@ export class State {
 
     togglePause() {
         this.pause ? this.pause = false : this.pause = true
+    }
+
+    touch(player) {
+        this.lastTouch = player
     }
 }
