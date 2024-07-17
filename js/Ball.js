@@ -1,11 +1,11 @@
-import { GameElement } from './GameElement.js';
+import { GameElement } from './GameElement.js'
 
 // Class representing the ball
 export class Ball extends GameElement {
     constructor(htmlElement, speed, direction) {
-        super(htmlElement);
+        super(htmlElement)
 
-        this.speed = speed || 2;
+        this.speed = speed || 2
         this.direction = direction || {
             right: false,
             left: false,

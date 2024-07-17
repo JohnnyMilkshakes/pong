@@ -26,11 +26,11 @@ export const waitForUnpause = () => {
     return new Promise((resolve) => {
         const intervalId = setInterval(() => {
             if (checkUnpause()) {
-                clearInterval(intervalId);
-                resolve();
+                clearInterval(intervalId)
+                resolve()
             }
-        }, 100); // Check every 100 milliseconds
-    });
+        }, 100) // Check every 100 milliseconds
+    })
 }
 
 // Update the position of player one

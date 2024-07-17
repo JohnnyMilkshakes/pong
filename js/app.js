@@ -1,23 +1,12 @@
 import { Ball } from './Ball.js'
 import { Paddle } from './Paddle.js'
 import { State } from './State.js'
-import { showScreen, 
-        waitForUnpause, 
-        updatePlayerOnePosition, 
-        updatePlayerTwoPosition,
-        updateBallPosition,
-        ballCollisionDetector,
-        checkWinner } from './utils.js'
-import { gameScreens, 
-        gameContainer, 
-        ballElement, 
-        playerOnePaddleElement, 
-        playerTwoPaddleElement,
-        winMessage,
-        playerSelectDiv,
-        difficultySelectDiv,
-        howToPlayButton,
-        startButton,
+
+import { showScreen, waitForUnpause, updatePlayerOnePosition, updatePlayerTwoPosition,
+        updateBallPosition, ballCollisionDetector, checkWinner } from './utils.js'
+
+import { gameScreens, gameContainer, ballElement, playerOnePaddleElement, playerTwoPaddleElement,
+        winMessage, playerSelectDiv, difficultySelectDiv, howToPlayButton, startButton,
         twoPlayerButton } from './constants.js'
 
 let playerOne, playerTwo, ball, state

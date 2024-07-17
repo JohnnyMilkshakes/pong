@@ -3,60 +3,60 @@
 // Class representing a game element
 export class GameElement {
     constructor(htmlElement) {
-        this.htmlElement = htmlElement;
+        this.htmlElement = htmlElement
 
-        const data = this.getElementData();
-        
+        const data = this.getElementData()
+
         this.topLeft = {
             x: data.left,
             y: data.top
-        };
+        }
 
         this.bottomRight = {
             x: data.right,
             y: data.bottom
-        };
+        }
 
         this.startPointTopLeft = {
             x: data.x,
             y: data.y
-        };
+        }
 
         this.startPointBottomRight = {
             x: data.right,
             y: data.bottom
-        };
+        }
 
-        this.length = data.height;
-        this.width = data.width;
+        this.length = data.height
+        this.width = data.width
     }
 
     // Move the element up
     moveUp() {
-        this.topLeft.y -= this.speed;
-        this.bottomRight.y -= this.speed;
-        this.updatePosition();
+        this.topLeft.y -= this.speed
+        this.bottomRight.y -= this.speed
+        this.updatePosition()
     }
 
     // Move the element down
     moveDown() {
-        this.topLeft.y += this.speed;
-        this.bottomRight.y += this.speed;
-        this.updatePosition();
+        this.topLeft.y += this.speed
+        this.bottomRight.y += this.speed
+        this.updatePosition()
     }
 
     // Move the element left
     moveLeft() {
-        this.topLeft.x -= this.speed;
-        this.bottomRight.x -= this.speed;
-        this.updatePosition();
+        this.topLeft.x -= this.speed
+        this.bottomRight.x -= this.speed
+        this.updatePosition()
     }
 
     // Move the element right
     moveRight() {
-        this.topLeft.x += this.speed;
-        this.bottomRight.x += this.speed;
-        this.updatePosition();
+        this.topLeft.x += this.speed
+        this.bottomRight.x += this.speed
+        this.updatePosition()
     }
 
     // Update the element's position on the screen
@@ -75,6 +75,6 @@ export class GameElement {
 
     // Get the element's data
     getElementData() {
-        return this.htmlElement.getBoundingClientRect();
+        return this.htmlElement.getBoundingClientRect()
     }
 }

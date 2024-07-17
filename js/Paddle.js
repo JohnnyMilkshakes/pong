@@ -1,10 +1,10 @@
-import { GameElement } from './GameElement.js';
+import { GameElement } from './GameElement.js'
 
 // Class representing the paddle
 export class Paddle extends GameElement {
     constructor(htmlElement, speed) {
-        super(htmlElement);
+        super(htmlElement)
 
-        this.speed = speed || 2;
+        this.speed = speed || 2
     }
 }
