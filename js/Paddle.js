@@ -1,5 +1,3 @@
-// Paddle.js
-
 import { GameElement } from './GameElement.js';
 
 // Class representing the paddle
@@ -10,5 +8,3 @@ export class Paddle extends GameElement {
         this.speed = speed || 2;
     }
 }
-
-

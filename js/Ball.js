@@ -1,5 +1,3 @@
-// Ball.js
-
 import { GameElement } from './GameElement.js';
 
 // Class representing the ball
@@ -14,5 +12,10 @@ export class Ball extends GameElement {
             up: false,
             down: false
         };
+    }
+
+    resetBall() {
+        this.resetPosition()
+        this.speed = 2
     }
 }

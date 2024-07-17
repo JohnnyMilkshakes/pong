@@ -30,5 +30,3 @@ gameScreens.push(document.querySelector('.how-to-play-screen'));
 export const ballElement = document.querySelector('.ball');
 export const playerOnePaddleElement = document.querySelector('.player-1-paddle');
 export const playerTwoPaddleElement = document.querySelector('.player-2-paddle');
-
-

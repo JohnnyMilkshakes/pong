@@ -24,6 +24,7 @@ export class State {
         this.playerOneSpeedLoopInterval = null;
         this.playerTwoSpeedLoopInterval = null;
         this.winner = ''
+        this.pause = false
 
     }
 
@@ -55,5 +56,9 @@ export class State {
         } else if (this.score.playerTwo >= 10) {
             this.winner = 'Player Two'
         }
+    }
+
+    togglePause() {
+        this.pause ? this.pause = false : this.pause = true
     }
 }
