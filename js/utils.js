@@ -17,9 +17,8 @@ export const showScreen = (screenClassNoDot) => {
     })
 }
 
-const checkUnpause = () => {
-    return !state.pause
-}
+const checkUnpause = () => !state.pause
+
 // ChatGPT wrote the function above and below (except for the setInterval part) 
 // they are used to implement the pause ability inside the gameLoop
 export const waitForUnpause = () => {

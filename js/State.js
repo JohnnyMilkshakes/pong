@@ -23,6 +23,8 @@ export class State {
         this.winner = ''
         this.pause = false
         this.lastTouch = ''
+        this.onePlayer = false 
+        this.twoPlayer = false
     }
 
     // Get the dimensions of the game screen

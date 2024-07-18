@@ -13,6 +13,8 @@ import { handleStartButton, handleHowToPlayButton, handleOnePlayerButton,
         handleBackButton, handleEasyButton, handleMediumButton, handleHardButton
  } from './handlers.js'
 
+ import { options } from './handlers.js'
+
 let playerOne, playerTwo, ball, state
 
 // Initialize the game
@@ -22,6 +24,13 @@ const init = () => {
     ball = new Ball(ballElement)
     state = new State(playerOne, playerTwo, ball, gameScreens[1])
 
+    if (options.onePlayer) {
+        playerTwo.isComputer = true
+        if(options.easy) playerTwo.speed = 4
+        if(options.medium) playerTwo.speed = 5
+        if(options.hard) playerTwo.speed = 10
+
+    }
     state.ball.direction.up = true
     state.ball.direction.right = true
     state.lastTouch = "Player One"
@@ -48,6 +57,8 @@ const init = () => {
             lastFrameTime = now
             fpsContainer.textContent = `FPS: ${fps}`
         }// ChatGPT wrote the code above, the rest below is me
+
+        if (playerTwo.isComputer) aiBrain()
 
         ballCollisionDetector()
         updateBallPosition()
@@ -91,6 +102,8 @@ const handleClick = (event) => {
     }
 
     if (handlers[buttonClass]) handlers[buttonClass]()
+
+    console.log(options)
 }
 
 // Handle key down events
@@ -109,6 +122,8 @@ const handleKeyDown = (event) => {
         }
     }
 
+    if (playerTwo.isComputer) return
+    
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
         if (!state.playerTwoSpeedLoopInterval) {
             state.playerTwoSpeedLoopInterval = setInterval(() => {
@@ -131,6 +146,25 @@ const handleKeyUp = (event) => {
         clearInterval(state.playerTwoSpeedLoopInterval)
         state.playerTwoSpeedLoopInterval = null
     }
+}
+
+
+const aiBrain = () => {
+    if(ball.getCenterY() < playerTwo.getCenterY()) {
+        if (playerTwo.topLeft.y > state.gameplayArea.upperBound) {
+            playerTwo.moveUp()
+        }
+    }
+
+
+    if(ball.getCenterY() > playerTwo.getCenterY()) {
+        if (playerTwo.bottomRight.y < state.gameplayArea.lowerBound) {
+            playerTwo.moveDown()
+        }
+
+    }
+
+
 }
 
 document.addEventListener('DOMContentLoaded', () => {

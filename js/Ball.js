@@ -16,7 +16,7 @@ export class Ball extends GameElement {
 
     resetBall() {
         this.resetPosition()
-        this.speed = 2
+        this.speed = 5 
     }
 
     flipVerticalDirection() {

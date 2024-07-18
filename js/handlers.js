@@ -3,6 +3,13 @@ import { playerSelectDiv, difficultyButtonSpan, onePlayerButton, startButton,
 
 import { showScreen } from './utils.js'
 
+import { Options } from './Options.js'
+
+
+export const options = new Options()
+
+
+console.log(options)
 export const handleStartButton = () => {
     showScreen('gameplay-screen')
     twoPlayerButton.classList.remove('button-selected')
@@ -20,15 +27,23 @@ export const handleOnePlayerButton = () => {
     onePlayerButton.classList.add('button-selected')
 
     twoPlayerButton.classList.remove('button-selected')
+
+    options.onePlayer = true
+    options.twoPlayer = false
+
+
+
+
 }
 
 export const handleTwoPlayerButton = () => {
+    options.onePlayer = false
+    options.twoPlayer = true
+
     startButton.classList.remove('hidden')
     twoPlayerButton.classList.add('button-selected')
     onePlayerButton.classList.remove('button-selected')
     difficultyButtonSpan.classList.add('hidden')
-
-
 }
 
 export const handleDifficultyBackButton = () => {
@@ -51,6 +66,9 @@ export const handleEasyButton = () => {
     easyButton.classList.add('button-selected')
     mediumButton.classList.remove('button-selected')
     hardButton.classList.remove('button-selected')
+    options.easy = true
+    options.medium = false
+    options.hard = false
 }
 
 export const handleMediumButton = () => {
@@ -58,6 +76,9 @@ export const handleMediumButton = () => {
     easyButton.classList.remove('button-selected')
     mediumButton.classList.add('button-selected')
     hardButton.classList.remove('button-selected')
+    options.easy = false
+    options.medium = true
+    options.hard = false
 }
 
 export const handleHardButton = () => {
@@ -65,4 +86,7 @@ export const handleHardButton = () => {
     easyButton.classList.remove('button-selected')
     mediumButton.classList.remove('button-selected')
     hardButton.classList.add('button-selected')
+    options.easy = false
+    options.medium = false
+    options.hard = true
 }

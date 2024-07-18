@@ -4,4 +4,6 @@ export class Paddle extends GameElement {
     constructor(htmlElement) {
         super(htmlElement)
     }
+
+    isComputer = false
 }

@@ -82,5 +82,6 @@ export class GameElement {
 
     getCenterY() {
         this.centerY = this.topLeft.y + (this.length / 2)
+        return this.centerY
     }
 }
