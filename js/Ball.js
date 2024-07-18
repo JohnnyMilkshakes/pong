@@ -3,7 +3,7 @@ import { state } from './app.js'
 
 
 export class Ball extends GameElement {
-    constructor(htmlElement, speed, direction) {
+    constructor(htmlElement, direction) {
         super(htmlElement)
 
         this.direction = direction || {
@@ -28,8 +28,6 @@ export class Ball extends GameElement {
     }
 
     flipHorizontalDirection() {
-
-        console.log('this running too often?')
 
         if (this.direction.right && state.lastTouch === 'Player One') {
             console.log('set Left')
@@ -65,8 +63,6 @@ export class Ball extends GameElement {
 
     leftPaddleCollision(paddle) {
 
-        console.log(state.lastTouch)
-
         if (state.lastTouch === "Player Two") {
             paddle.getCenterY()
             this.getCenterY()
@@ -89,10 +85,8 @@ export class Ball extends GameElement {
     rightPaddleCollision(paddle) {
 
         if (state.lastTouch === "Player One") {
-
             paddle.getCenterY()
             this.getCenterY()
-
             this.flipHorizontalDirection()
             
             if (this.centerY < (paddle.centerY - 25)) {

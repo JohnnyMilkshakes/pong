@@ -1,5 +1,5 @@
-import { playerSelectDiv, difficultySelectDiv, howToPlayButton, startButton,
-    twoPlayerButton } from './constants.js'
+import { playerSelectDiv, difficultyButtonSpan, onePlayerButton, startButton,
+    twoPlayerButton, easyButton, mediumButton, hardButton } from './constants.js'
 
 import { showScreen } from './utils.js'
 
@@ -13,20 +13,26 @@ export const handleHowToPlayButton = () => {
 }
 
 export const handleOnePlayerButton = () => {
-    playerSelectDiv.classList.add('hidden')
-    difficultySelectDiv.classList.remove('hidden')
+    // playerSelectDiv.classList.add('hidden')
+    startButton.classList.add('hidden')
 
-    howToPlayButton.style.marginBottom = '0px'
+    difficultyButtonSpan.classList.remove('hidden')
+    onePlayerButton.classList.add('button-selected')
+
     twoPlayerButton.classList.remove('button-selected')
 }
 
 export const handleTwoPlayerButton = () => {
     startButton.classList.remove('hidden')
     twoPlayerButton.classList.add('button-selected')
+    onePlayerButton.classList.remove('button-selected')
+    difficultyButtonSpan.classList.add('hidden')
+
+
 }
 
 export const handleDifficultyBackButton = () => {
-    difficultySelectDiv.classList.add('hidden')
+    difficultyButtonSpan.classList.add('hidden')
     playerSelectDiv.classList.remove('hidden')
     startButton.classList.add('hidden')
 }
@@ -41,19 +47,22 @@ export const handleBackButton = () => {
 
 export const handleEasyButton = () => {
     startButton.classList.remove('hidden')
-    console.log('EZ')
+
+    easyButton.classList.add('button-selected')
+    mediumButton.classList.remove('button-selected')
+    hardButton.classList.remove('button-selected')
 }
 
 export const handleMediumButton = () => {
     startButton.classList.remove('hidden')
-    console.log('MEDZ')
+    easyButton.classList.remove('button-selected')
+    mediumButton.classList.add('button-selected')
+    hardButton.classList.remove('button-selected')
 }
 
 export const handleHardButton = () => {
     startButton.classList.remove('hidden')
-    console.log('HARDZ')
+    easyButton.classList.remove('button-selected')
+    mediumButton.classList.remove('button-selected')
+    hardButton.classList.add('button-selected')
 }
-
-
-
-

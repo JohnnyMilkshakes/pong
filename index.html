@@ -14,21 +14,27 @@
 <main>
     <div class="game-container">
         <section class="start-screen">
-            <button class="start-button hidden">Start Game</button>
-            <button class="how-to-play-button">How To Play</button>
+            <div class="start-flex-cont">
+                <button class="start-button hidden">Start Game</button>
+            </div>
+            <div class="how-to-flex-cont">
+                <button class="how-to-play-button">How To Play</button>
+            </div>
+
             <div class="player-select">
                 <button class="one-player-button">One Player</button>
                 <button class="two-player-button">Two Player</button>
+
             </div>
-            <div class="difficulty-select hidden">
-                <p class="">Choose Your Difficulty</p>
-                <button class="easy-button">Easy</button>
-                <button class="medium-button">Medium</button>
-                <button class="hard-button">Hard</button>
-                <div class="back-button-container">
-                    <button class="difficulty-back-button">Back</button>
-                </div>
+            <div class="difficulty-select">
+                <span class="difficulty-button-span hidden">
+                    <button class="easy-button">Easy</button>
+                    <button class="medium-button">Medium</button>
+                    <button class="hard-button">Hard</button>
+                </span>
             </div>
+            <!-- <p class="hidden">Choose Your Difficulty</p> -->
+
         </section>
 
         <section class="gameplay-screen hidden">
