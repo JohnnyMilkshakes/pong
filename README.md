@@ -39,3 +39,8 @@ a point is awarded to the opposite side.
     └── utils.js
 ```
 
+#### Next Steps:
+
+* Create a branch in order to convert the game to use the canvas API
+* Improve computer opponent logic
+* Store and display user win/loss record 
