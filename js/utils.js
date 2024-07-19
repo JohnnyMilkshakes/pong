@@ -5,13 +5,15 @@ import { gameScreens,
         endScreenPlayerTwoScore, } from './constants.js'
 import { playerOne, playerTwo, ball, state } from './app.js'
 
+
+const bounce1 = new Audio('../soundsets/bounce1.mp3');
+const bounce2 = new Audio('../soundsets/bounce2.mp3');
+const scoreSound = new Audio('../soundsets/score-sound.mp3');
+
 // Show specific screen based on the class name
 export const showScreen = (screenClassNoDot) => {
     gameScreens.forEach((screen) => {
-        // I went back and forth a few times with chatGPT to get this conditional
-        // I made it the ternary operator bc it was too verbose
-        Object.values(screen.classList).includes(screenClassNoDot)
-        // screen.class.contains(screenClassNoDot)
+        screen.classList.contains(screenClassNoDot)
             ? screen.classList.remove('hidden')
             : screen.classList.add('hidden')
     })
@@ -85,6 +87,7 @@ export const ballCollisionDetector = () => {
         // if true player 1 paddle was touched
         ball.leftPaddleCollision(playerOne)
         state.touch('Player One')
+        bounce1.play()
     }
 
     if (ball.bottomRight.x >= playerTwo.topLeft.x &&
@@ -93,24 +96,30 @@ export const ballCollisionDetector = () => {
         // if true player 2 paddle was touched
         ball.rightPaddleCollision(playerTwo)
         state.touch('Player Two')
+        bounce1.play()
+
     }
 
     // if the ball touches the top
     if (ball.topLeft.y <= state.gameplayArea.upperBound) {
         ball.flipVerticalDirection()
+        bounce2.play()
     // if the ball touches the bottom
     } else if (ball.bottomRight.y >= state.gameplayArea.lowerBound) {
         ball.flipVerticalDirection()
+        bounce2.play()
     }
 
     // if the ball touches the right side net
     if (ball.bottomRight.x >= state.gameplayArea.rightBound) {
         state.score.playerOne = state.score.playerOne + 1
+        scoreSound.play()
         updateScore()
         ball.resetBall()
     // if the ball touches the left side net
     } else if (ball.topLeft.x <= state.gameplayArea.leftBound) {
         state.score.playerTwo = state.score.playerTwo + 1
+        scoreSound.play()
         updateScore()
         ball.resetBall()
     }

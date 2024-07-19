@@ -29,7 +29,7 @@ export class GameElement {
 
         this.length = data.height
         this.width = data.width
-        this.speed = 2
+        this.speed = 3
         this.centerY = this.getCenterY()
     }
 

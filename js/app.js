@@ -10,10 +10,10 @@ import { gameScreens, gameContainer, ballElement, playerOnePaddleElement, player
 
 import { handleStartButton, handleHowToPlayButton, handleOnePlayerButton,
         handleTwoPlayerButton, handleDifficultyBackButton, handlePlayAgainButton, 
-        handleBackButton, handleEasyButton, handleMediumButton, handleHardButton
- } from './handlers.js'
+        handleBackButton, handleEasyButton, handleMediumButton, handleHardButton, options
+} from './handlers.js'
 
- import { options } from './handlers.js'
+const winSound = new Audio('../soundsets/win-sound.mp3');
 
 let playerOne, playerTwo, ball, state
 
@@ -26,10 +26,9 @@ const init = () => {
 
     if (options.onePlayer) {
         playerTwo.isComputer = true
-        if(options.easy) playerTwo.speed = 4
-        if(options.medium) playerTwo.speed = 5
-        if(options.hard) playerTwo.speed = 10
-
+        if(options.easy) playerTwo.speed = 5
+        if(options.medium) playerTwo.speed = 7
+        if(options.hard) playerTwo.speed = 20
     }
     state.ball.direction.up = true
     state.ball.direction.right = true
@@ -66,6 +65,7 @@ const init = () => {
             state.setWinner()
             winMessage.innerText = `${state.winner} Wins!`
             showScreen('end-screen')
+            winSound.play()
             return
         }
 
@@ -102,8 +102,6 @@ const handleClick = (event) => {
     }
 
     if (handlers[buttonClass]) handlers[buttonClass]()
-
-    console.log(options)
 }
 
 // Handle key down events
@@ -150,19 +148,45 @@ const handleKeyUp = (event) => {
 
 
 const aiBrain = () => {
-    if(ball.getCenterY() < playerTwo.getCenterY()) {
-        if (playerTwo.topLeft.y > state.gameplayArea.upperBound) {
-            playerTwo.moveUp()
+
+
+    if (options.hard){
+        if(ball.getCenterY() < playerTwo.getCenterY() -45 ) {
+            if (playerTwo.topLeft.y > state.gameplayArea.upperBound) {
+                playerTwo.moveUp()
+            }
+        }
+    
+    
+        if(ball.getCenterY() > playerTwo.getCenterY() +45 ) {
+            if (playerTwo.bottomRight.y < state.gameplayArea.lowerBound) {
+                playerTwo.moveDown()
+            }
+    
+        }
+
+    } else {
+        if(ball.getCenterY() < playerTwo.getCenterY()) {
+            if (playerTwo.topLeft.y > state.gameplayArea.upperBound) {
+                playerTwo.moveUp()
+            }
+        }
+    
+    
+        if(ball.getCenterY() > playerTwo.getCenterY()) {
+            if (playerTwo.bottomRight.y < state.gameplayArea.lowerBound) {
+                playerTwo.moveDown()
+            }
+    
         }
     }
 
 
-    if(ball.getCenterY() > playerTwo.getCenterY()) {
-        if (playerTwo.bottomRight.y < state.gameplayArea.lowerBound) {
-            playerTwo.moveDown()
-        }
+    
 
-    }
+
+
+
 
 
 }

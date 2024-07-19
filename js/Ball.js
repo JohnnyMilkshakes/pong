@@ -30,23 +30,18 @@ export class Ball extends GameElement {
     flipHorizontalDirection() {
 
         if (this.direction.right && state.lastTouch === 'Player One') {
-            console.log('set Left')
             this.setDirectionLeft()
         } else if (this.direction.left && state.lastTouch === 'Player Two') {
-            console.log('set Right')
             this.setDirectionRight()
         }
     }
 
     setDirectionUp() {
-        console.log('set UP')
         this.direction.up = true
         this.direction.down = false
     }
 
     setDirectionDown() {
-        console.log('set Down')
-
         this.direction.up = false
         this.direction.down = true
     }

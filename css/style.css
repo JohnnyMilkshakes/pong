@@ -247,14 +247,6 @@ h3 {
     transform: translateX(-50%);
 }
 
-/* .score-board h3 {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0;
-    color: aqua;
-} */
-
 .player-2-score-p {
     float: right;
     margin-right: 25px;
@@ -266,6 +258,7 @@ h3 {
     width: 11px; /* Adjust the width to your preference */
     height: 100px; /* Adjust the height to your preference */
     background-color: white;
+    transition-timing-function: linear;
 }
 
 .player-1-paddle {

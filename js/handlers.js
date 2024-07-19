@@ -6,10 +6,10 @@ import { showScreen } from './utils.js'
 import { Options } from './Options.js'
 
 
+
 export const options = new Options()
 
 
-console.log(options)
 export const handleStartButton = () => {
     showScreen('gameplay-screen')
     twoPlayerButton.classList.remove('button-selected')
@@ -30,10 +30,6 @@ export const handleOnePlayerButton = () => {
 
     options.onePlayer = true
     options.twoPlayer = false
-
-
-
-
 }
 
 export const handleTwoPlayerButton = () => {
@@ -53,7 +49,7 @@ export const handleDifficultyBackButton = () => {
 }
 
 export const handlePlayAgainButton = () => {
-    showScreen('start-screen')
+    location.reload()
 }
 
 export const handleBackButton = () => {

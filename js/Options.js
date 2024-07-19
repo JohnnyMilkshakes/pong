@@ -6,6 +6,4 @@ export class Options {
         this.medium = false
         this.hard = false
     }
-
-
 }
