@@ -28,14 +28,14 @@ a point is awarded to the opposite side.
 │   └── style.css
 ├── index.html
 ├── js
-│   ├── Ball.js
-│   ├── GameElement.js
-│   ├── Options.js
-│   ├── Paddle.js
-│   ├── State.js
-│   ├── app.js
-│   ├── constants.js
-│   ├── handlers.js
-│   └── utils.js
+   ├── Ball.js
+   ├── GameElement.js
+   ├── Options.js
+   ├── Paddle.js
+   ├── State.js
+   ├── app.js
+   ├── constants.js
+   ├── handlers.js
+   └── utils.js
 ```
 
