@@ -24,17 +24,29 @@ a point is awarded to the opposite side.
 ```
 .
 ├── README.md
+├── assets
+│   ├── end-game-pic.png
+│   ├── gameplay-screen.png
+│   ├── main-menu.png
+│   └── pong-start-screenshot.png
 ├── css
 │   └── style.css
 ├── index.html
-└── js
-    ├── Ball.js
-    ├── GameElement.js
-    ├── Paddle.js
-    ├── State.js
-    ├── app.js
-    ├── constants.js
-    ├── handlers.js
-    └── utils.js
+├── js
+│   ├── Ball.js
+│   ├── GameElement.js
+│   ├── Options.js
+│   ├── Paddle.js
+│   ├── State.js
+│   ├── app.js
+│   ├── constants.js
+│   ├── handlers.js
+│   └── utils.js
+└── soundsets
+    ├── bounce1.mp3
+    ├── bounce2.mp3
+    ├── score-sound.mp3
+    └── win-sound.mp3
+
 ```
 
